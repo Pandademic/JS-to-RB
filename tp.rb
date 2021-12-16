@@ -7,8 +7,10 @@ data.each { |line|
     #vars 
     line.gsub!("let", "")
     line.gsub!("var","")
+    #semicolon
+    line.gsub!(";","")
     #function keyword
-    line.gsub!("function", "def ")
+    line.gsub!("function(", "def ")
     #brackets
     line.gsub!("{", "")
     line.gsub!("}", "end")
@@ -27,6 +29,5 @@ data.each { |line|
 }
 
 data = data.join("")
-$input_noext=$input.delete(".js")
-File.open("#$input_noext.transpiled.rb", "w") { |f| f.write data }
+File.open("output.rb", "w") { |f| f.write data }
 
